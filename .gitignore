@@ -7,9 +7,7 @@
 
 # npm
 node_modules
-yarn.lock
 *-lock.json
-undefined
 
 # jest
 coverage
@@ -17,7 +15,6 @@ coverage
 # build
 dist
 build
-dist-types
 
 # Log files
 *.log
