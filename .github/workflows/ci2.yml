@@ -17,7 +17,6 @@ jobs:
     steps:
     - name: Checkout
     - uses: actions/checkout@v4
-
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
@@ -25,8 +24,7 @@ jobs:
     - name: Install
       run: yarn
     - name: Build
-      run: |
-        yarn build:prod
+      run: yarn build:prod
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
