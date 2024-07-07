@@ -1,0 +1,13 @@
+@use './shared/var.scss';
+
+// 定义vue主题色, 在这里只需要定义需要覆盖的变量
+//核心变量
+:root.vue {
+  --color-primary: #3eaf7c;
+  --color-primary-light-3: #78c7a3;
+  --color-primary-light-5: #9fd7be;
+  --color-primary-light-7: #c5e7d8;
+  --color-primary-light-8: #d8efe5;
+  --color-primary-light-9: #ecf7f2;
+  --color-primary-dark-2: #328c63;
+}

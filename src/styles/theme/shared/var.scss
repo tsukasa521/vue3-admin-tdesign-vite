@@ -1,0 +1,46 @@
+@use './t-design.scss';
+
+// 核心变量
+// todo 后续要根据配置数据生成核心变量
+:root {
+  --color-primary: var(--td-brand-color); // 品牌色、主色
+  --color-primary-friend-1: #00CFE8;
+  --color-primary-friend-2: #FF9F43;
+  --color-success: var(--td-success-color); // 成功提示色
+  --color-danger: #f56c6c; // 异常提示色
+  --color-text-primary: #303133; // 强调文字颜色
+  --color-text-regular: #2c3e50; // 主文字颜色
+  --color-text-secondary: #6F6B7D; // 次文字颜色
+  --color-board-base: #dbdade; // 默认边框颜色
+  --color-bg-base: #f8f7fa; // 默认背景色
+  --color-bg-primary-light: #F5F9FD;
+  --color-bg-page: #ffffff; // 页面背景色
+}
+
+// 特定区域变量
+:root {
+  // 侧边栏
+  --sidebar-logo-background: #fff;
+  --sidebar-logo-color: var(--color-primary);
+  --sidebar-logo-width: 32px;
+  --sidebar-logo-height: 32px;
+  --sidebar-logo-title-color: var(--color-text-regular);
+  --sidebar-border-color: var(--page-board-color);
+  --sidebar-menu-bg: #ffffff;
+
+  // 菜单展开收缩块
+  --hamburger-color: #6f6b7d;
+  --hamburger-width: 26px;
+  --hamburger-height: 26px;
+
+  // 顶栏 导航栏
+  --nav-bar-height: 62px;
+  --nav-bar-background: rgba(255, 255, 255, .95);
+  --nav-bar-box-shadow: 0 0.125rem 0.25rem rgba(165, 163, 174, .3);
+  --nav-bar-right-menu-background: #fff;
+
+  // 主要区域
+  --app-bg-color: var(--color-bg-base); // 主区域背景色
+  --page-bg-color: var(--color-bg-page); // 主区域里嵌套一层区域背景色
+  --page-board-color: #e3e8ed; // 主区域里嵌套一层区域边框色
+}

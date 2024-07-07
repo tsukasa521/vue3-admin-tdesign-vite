@@ -10,7 +10,7 @@ module.exports = defineConfig({
   chainWebpack: (config) => {
     // 处理标题
     config.plugin('html').tap((args) => {
-      args[0].title = '智能激励管理系统'
+      args[0].title = '管理系统'
       return args
     })
 

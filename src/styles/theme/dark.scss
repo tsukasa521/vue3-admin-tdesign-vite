@@ -1,0 +1,18 @@
+@use './shared/var.scss';
+
+:root.dark {
+  --color-text-regular: #e5eaf3;
+
+  //侧边栏
+  --sidebar-logo-background: #1a1a1a;
+  --sidebar-logo-title-color: #fff;
+
+  // 顶栏 导航栏
+  --nav-bar-background: #1a1a1a;
+  --nav-bar-right-menu-background: #1a1a1a;
+
+  // 主要区域
+  --app-bg-color: #1a1a1a;
+  --page-bg-color: #2f2f2f;
+  --page-board-color: transparent;
+}

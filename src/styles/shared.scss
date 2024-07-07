@@ -1,0 +1,95 @@
+body {
+  background: var(--color-bg-base);
+}
+
+.page-container {
+  @apply p-6;
+  max-width: 1440px;
+  min-height: calc(100vh - 78px);
+
+  .page-inner {
+    @apply p-6;
+    background-color: var(--page-bg-color);
+    border-radius: 6px;
+    box-shadow: 0 0.25rem 1.125rem rgba(75, 70, 92, .1)
+  }
+}
+
+@media (min-width: 1400px) {
+  .page-container{
+    @apply mx-auto;
+  }
+}
+
+.card {
+  @apply bg-white rounded mb-6 flex flex-col;
+  box-shadow: 0 1px 2px rgba(56, 65, 74, .15);
+
+  &.card-h-full {
+    height: calc(100% - 1.5rem);
+  }
+
+  .card-header {
+    @apply flex justify-between items-center p-4;
+  }
+
+  .card-body {
+    @apply p-4 flex-auto;
+  }
+}
+
+.horizontal-container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 1150px;
+}
+
+// 覆盖t-menu菜单样式
+.t-default-menu .t-menu__item.t-is-active:not(.t-is-opened) {
+  background: linear-gradient(72.47deg, #7367f0 22.16%, rgba(115, 103, 240, 0.7) 76.47%);
+  box-shadow: 0px 2px 6px 0px rgba(115, 103, 240, .48);
+  color: #fff !important;
+}
+
+.t-default-menu .t-menu__item.t-is-active:not(.t-is-opened) .t-icon {
+  color: #fff !important;
+}
+
+.t-default-menu__inner .t-menu__logo:not(:empty) {
+  height: 64px !important;
+  border-bottom: 0px !important;
+}
+
+// 覆盖t-dialog样式
+.scorpios-dialog {
+  .t-dialog--default {
+    padding: 20px 24px;
+
+  }
+
+  .t-dialog__header .t-dialog__header-content {
+    @apply text-lg;
+    font-weight: 500;
+  }
+
+  .t-dialog__close {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .t-dialog__body {
+    padding: 24px 0;
+  }
+}
+
+.scorpios-borderless-dialog {
+  .t-dialog--default {
+    @apply bg-base;
+    padding: 0;
+  }
+
+  .t-dialog__body {
+    padding: 0;
+  }
+}

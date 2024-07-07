@@ -1,0 +1,27 @@
+// @use './constant.scss' as C;
+
+// :export {
+//   @each $var, $color in C.$root-vars {
+//     #{$var}: #{$color};
+//   }
+// }
+
+// todo 用于导出到js中使用, 后续要根据配置数据生成
+
+$--color-primary: var(--color-primary);
+$--color-primary-light-3: var(--color-primary-light-3);
+$--color-primary-light-5: var(--color-primary-light-5);
+$--color-primary-light-7: var(--color-primary-light-7);
+$--color-primary-light-8: var(--color-primary-light-8);
+$--color-primary-light-9: var(--color-primary-light-9);
+$--color-primary-dark-2: var(--color-primary-dark-2);
+
+:export {
+  --color-primary: var(--color-primary);
+  --color-primary-light-3: var(--color-primary-light-3);
+  --color-primary-light-5: var(--color-primary-light-5);
+  --color-primary-light-7: var(--color-primary-light-7);
+  --color-primary-light-8: var(--color-primary-light-8);
+  --color-primary-light-9: var(--color-primary-light-9);
+  --color-primary-dark-2: var(--color-primary-dark-2);
+}
