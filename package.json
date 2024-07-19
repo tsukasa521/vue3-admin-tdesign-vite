@@ -3,6 +3,9 @@
   "description": "",
   "version": "0.0.0",
   "private": true,
+  "node": {
+    "version": ">=18"
+  },
   "scripts": {
     "dev": "vite",
     "build:staging": "vite build --mode staging",
