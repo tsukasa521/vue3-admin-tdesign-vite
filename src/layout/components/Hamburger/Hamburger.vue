@@ -1,6 +1,6 @@
 <script>
 import { h } from 'vue'
-import SvgIcon from '@/icons/components/SvgIcon.vue'
+// import SvgIcon from '@/icons/components/SvgIcon.vue'
 
 export default {
   props: {
@@ -11,7 +11,7 @@ export default {
   },
   setup (props, ctx) {
     return () => {
-      const svgElement = h(SvgIcon, {
+      const svgElement = h('p', {
         icon: 'hamburger',
         class: 'hamburger-style'
       }, [])

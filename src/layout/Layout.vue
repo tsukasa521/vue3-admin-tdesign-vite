@@ -16,18 +16,18 @@
 
 <script setup name="Layout">
 import { computed } from 'vue'
-import { deviceEnum } from '@/enum'
+import { DEVICE_TYPE } from '@/utils/constants'
 import { useAppStore } from '@/stores/app'
 import AppMain from './components/AppMain.vue'
 import Sidebar from './components/Sidebar'
-import Navbar from './components/Navbar'
+import Navbar from './components/Navbar.vue'
 
 const appStore = useAppStore()
 const opened = computed(() => {
   return appStore.isSidebarOpened
 })
 
-const isMobile = computed(() => appStore.device === deviceEnum.mobile)
+const isMobile = computed(() => appStore.device === DEVICE_TYPE.mobile)
 
 const classObj = computed(() => {
   return {

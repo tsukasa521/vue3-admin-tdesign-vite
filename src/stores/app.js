@@ -10,7 +10,7 @@ export const useAppStore = defineStore('app', {
   }),
   getters: {
     isSidebarOpened: (s) => s.sidebar.opened,
-    isMobile: (s) => s.device === DEVICE_TYPE.mobile,
+    is: (s) => s.device === DEVICE_TYPE.mobile,
     themeName: (s) => localStorage.getItem('theme') ?? s.theme
   },
   actions: {

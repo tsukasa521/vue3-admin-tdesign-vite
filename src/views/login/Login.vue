@@ -24,7 +24,7 @@
 </template>
 
 <script setup>
-import { onMounted, ref, unref } from 'vue'
+import { ref } from 'vue'
 import router from '@/router'
 import { useAccountStore } from '@/stores'
 
@@ -45,7 +45,7 @@ const login = async () => {
   try {
     await refForm.value?.validate()
     buttonLoading.value = true
-    await store.login(unref(formValue))
+    await store.login(formValue.value.name, formValue.value.password)
     // const { showSuccessMessage } = useNotification()
     // showSuccessMessage('登录成功！')
     router.push({ path: '/' })

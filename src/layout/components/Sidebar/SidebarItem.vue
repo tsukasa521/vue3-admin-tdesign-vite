@@ -37,7 +37,6 @@
 import { ref } from 'vue'
 import Link from './Link.vue'
 import { isExternalUrl } from '@/utils/validate'
-import path from 'path'
 
 const props = defineProps({
   // 每一个router Item
@@ -87,6 +86,6 @@ const resolvePath = (routePath) => {
     return props.basePath
   }
 
-  return path.resolve(props.basePath, routePath)
+  return `${props.basePath}/${routePath}`
 }
 </script>

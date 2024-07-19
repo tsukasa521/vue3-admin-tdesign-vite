@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia'
 import { removeToken, setToken } from '@/utils/auth'
 import { usePermissionStore } from './permission'
-import { getSelf, login } from '@/apis'
 
 export const useAccountStore = defineStore('account', {
   state: () => ({
@@ -19,42 +18,29 @@ export const useAccountStore = defineStore('account', {
     companyName: (s) => s.companyInfo.companyName
   },
   actions: {
-    login (loginFormValue) {
+    login(name, password) {
       return new Promise((resolve, reject) => {
-        const { name, password, uuid } = loginFormValue
-        login(name, password, undefined, uuid)
-          .then(({ token }) => {
-            setToken(token)
-            resolve()
-          })
-          .catch((error) => {
-            reject(error)
-          })
+        // 模拟后端登录成功,返回令牌
+        setToken("xxx")
+        resolve()
       })
     },
-    getProfile () {
+    getProfile() {
       return new Promise((resolve, reject) => {
-        getSelf().then(({ data }) => {
-          const { userInfo, companyInfo } = data
+        // 模拟后端返回登录账号信息
+        this.roles = ['admin']
 
-          if (userInfo.roleId) {
-            this.roles = [userInfo.roleId]
-          } else {
-            reject(new Error('getInfo: roles must be a non-null array !'))
-          }
-          // todo 可以从后端获取菜单
-          this.profile = {
-            id: userInfo.userId, name: userInfo.userName, avatar: userInfo.avatar, menu: []
-          }
-          this.companyInfo.companyId = companyInfo.companyId
-          this.companyInfo.companyName = companyInfo.companyName
-          resolve()
-        }).catch((error) => {
-          reject(error)
-        })
+        this.profile = {
+          id: '001',
+          name: '张三',
+          avatar: null,
+          menu: [] // 可以从后端获取菜单
+        }
+
+        resolve()
       })
     },
-    logout () {
+    logout() {
       return new Promise((resolve, reject) => {
         this.profile = null
         this.roles = []

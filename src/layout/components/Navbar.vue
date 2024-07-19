@@ -59,26 +59,11 @@ import Hamburger from './Hamburger'
 const appStore = useAppStore()
 const accountStore = useAccountStore()
 
-const companyName = computed(() => accountStore.companyName)
-
 // 初始化主题
 appStore.toggleTheme(appStore.themeName)
 const changeTheme = (val) => {
   appStore.toggleTheme(val?.value)
 }
-
-const { locale, t } = useI18n()
-const languageOptions = computed(() => {
-  const l = [
-    { value: 'zh', content: '中文' },
-    { value: 'en', content: '英文' }
-  ]
-  return l.filter((p) => p.value !== locale.value)
-})
-const changeLanguage = (val) => {
-  locale.value = val?.value
-}
-const greeting = computed(() => `${t('greeting')}, `)
 
 // 初始化侧边栏菜单收缩状态
 appStore.sidebar.opened = localStorage.getItem('sidebar')
