@@ -7,8 +7,7 @@
 - tdesign
 - echarts
 - tailwindcss
-- iconfont
-- webpack
+- vite
 
 **关于技术栈的选择**
 
@@ -16,6 +15,7 @@
 - 通用列表页
 - 通用增删改查
 - 通用打开Dialog、Drawer
+- iconfont页
 - 通用向导页
 - 主题切换
 - 多语言
