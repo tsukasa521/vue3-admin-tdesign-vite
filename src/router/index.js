@@ -22,6 +22,15 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: '/admin',
+    component: Layout,
+    redirect: '/admin-dashboard/index',
+    meta: {
+      title: '后台管理'
+    },
+    hidden: true
+  },
+  {
     path: '/login',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -44,9 +53,27 @@ export const asyncRoutes = [
       {
         path: 'index',
         component: () => import('@/views/dashboard'),
-        name: 'enterpriseDashboard',
+        name: 'EnterpriseDashboard',
         meta: {
           title: '首页',
+          tIcon: 'home'
+        }
+      }
+    ]
+  },
+  {
+    path: '/admin-dashboard',
+    component: Layout,
+    meta: {
+      roles: ['admin']
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/admin/dashboard'),
+        name: 'AdminDashboard',
+        meta: {
+          title: '管理首页',
           tIcon: 'home'
         }
       }

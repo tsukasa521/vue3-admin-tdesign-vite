@@ -101,7 +101,7 @@ const loginOut = () => {
 
 const navigate2Admin = () => {
   nextTick(() => {
-    router.push('/admin-company-management/index')
+    router.push('/admin')
   })
 }
 </script>
