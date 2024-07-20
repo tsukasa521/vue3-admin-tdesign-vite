@@ -1,6 +1,6 @@
 <script>
 import { h } from 'vue'
-// import SvgIcon from '@/icons/components/SvgIcon.vue'
+import HamburgerSvg from '@/icons/svg/hamburger.svg?component'
 
 export default {
   props: {
@@ -9,10 +9,9 @@ export default {
       default: false
     }
   },
-  setup (props, ctx) {
+  setup(props, ctx) {
     return () => {
-      const svgElement = h('p', {
-        icon: 'hamburger',
+      const svgElement = h(HamburgerSvg, {
         class: 'hamburger-style'
       }, [])
 
@@ -27,9 +26,15 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss" scoped>
+svg {
+  path {
+    fill: var(--hamburger-color);
+  }
+}
+
 .hamburger-style {
-  color: var(--hamburger-color);
+
   width: var(--hamburger-width);
   height: var(--hamburger-height);
   cursor: pointer;
