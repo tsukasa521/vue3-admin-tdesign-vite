@@ -12,6 +12,8 @@ import './styles/theme/index.scss'
 
 import TDesign from 'tdesign-vue-next'
 
+import './hooks/router'
+
 console.debug('NODE_ENV', process.env.NODE_ENV)
 
 const app = createApp(App)

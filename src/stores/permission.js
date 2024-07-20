@@ -7,7 +7,7 @@ import router, { asyncRoutes, constantRoutes } from '@/router'
  * @param route
  */
 function hasPermission (roles, route) {
-  // 超级管理员可以看到所有菜单
+  // 管理员可以看到所有菜单
   if (roles.includes('admin')) return true
 
   if (route.meta && route.meta.roles) {

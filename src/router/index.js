@@ -9,24 +9,17 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/enterprise/index',
+    redirect: '/enterprise',
     hidden: true
   },
   {
     path: '/enterprise',
     component: Layout,
-    meta: {},
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/dashboard'),
-        name: 'enterpriseDashboard',
-        meta: {
-          title: '首页',
-          tIcon: 'home'
-        }
-      }
-    ]
+    redirect: '/enterprise-dashboard/index',
+    meta: {
+      title: '管理系统'
+    },
+    hidden: true
   },
   {
     path: '/login',

@@ -59,6 +59,8 @@ import Hamburger from './Hamburger'
 const appStore = useAppStore()
 const accountStore = useAccountStore()
 
+const companyName = computed(() => accountStore.companyName)
+
 // 初始化主题
 appStore.toggleTheme(appStore.themeName)
 const changeTheme = (val) => {
