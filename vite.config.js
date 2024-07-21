@@ -16,6 +16,6 @@ export default defineConfig({
   },
   plugins: [
     vue(),
-    svgLoader()
+    svgLoader({ defaultImport: 'url' })
   ]
 })

@@ -17,7 +17,7 @@
 
       <div class="flex items-center gap-3">
         <t-badge count="5">
-          <t-icon name="notification" size="26" />
+          <t-icon name="notification" size="26" class="cursor-pointer" />
         </t-badge>
 
         <t-dropdown class="cursor-pointer"

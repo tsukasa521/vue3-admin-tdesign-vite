@@ -1,11 +1,8 @@
 <template>
   <div id="Sidebar" class="reset-menu-style">
-    <!--logo-->
-    <!-- <Logo :collapse="!isCollapse" /> -->
-    <!--router nav-->
     <t-menu width="16.25rem" v-model="activeMenu" :collapsed="!isCollapse" expand-mutex :collapse-transition="false">
       <template #logo>
-        <img src="@/assets/logo.png" class="w-8 h-8" />
+        <img src="@/icons/svg/grin.svg" class="w-8 h-8" />
         <span class="text-base">管理系统</span>
       </template>
       <SidebarItem v-for="route in routes" :key="route.path" :item="route" :base-path="route.path" />
@@ -14,7 +11,7 @@
 </template>
 
 <script setup lang="ts">
-// import Logo from './Logo.vue'
+
 import SidebarItem from './SidebarItem.vue'
 
 // change  scss variable to js
