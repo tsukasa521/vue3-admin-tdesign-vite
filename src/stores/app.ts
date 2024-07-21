@@ -14,13 +14,13 @@ export const useAppStore = defineStore('app', {
     themeName: (s) => localStorage.getItem('theme') ?? s.theme
   },
   actions: {
-    toggleSideBar () {
+    toggleSideBar() {
       this.$patch((state) => {
         state.sidebar.opened = !state.sidebar.opened
-        localStorage.setItem('sidebar', state.sidebar.opened)
+        localStorage.setItem('sidebar', String(state.sidebar.opened))
       })
     },
-    toggleTheme (themeName) {
+    toggleTheme(themeName: string) {
       this.$patch((state) => {
         state.theme = themeName
         localStorage.setItem('theme', themeName)

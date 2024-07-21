@@ -14,7 +14,7 @@
   </t-layout>
 </template>
 
-<script setup name="Layout">
+<script setup name="Layout" lang="ts">
 import { computed } from 'vue'
 import { DEVICE_TYPE } from '@/utils/constants'
 import { useAppStore } from '@/stores/app'

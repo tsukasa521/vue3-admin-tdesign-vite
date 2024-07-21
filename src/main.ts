@@ -14,7 +14,7 @@ import TDesign from 'tdesign-vue-next'
 
 import './hooks/router'
 
-console.debug('NODE_ENV', process.env.NODE_ENV)
+// console.debug('NODE_ENV', process.env.NODE_ENV)
 
 const app = createApp(App)
 

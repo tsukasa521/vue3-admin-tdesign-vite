@@ -1,12 +1,14 @@
 import { defineStore } from 'pinia'
-import router, { asyncRoutes, constantRoutes } from '@/router'
+import router, { asyncRoutes, constantRoutes, RouteRecordRaw } from '@/router'
+import { RouteRecordNameGeneric } from 'vue-router'
+
 
 /**
  * Use meta.role to determine if the current user has permission
  * @param roles
  * @param route
  */
-function hasPermission (roles, route) {
+function hasPermission(roles: string[], route: RouteRecordRaw) {
   // 管理员可以看到所有菜单
   if (roles.includes('admin')) return true
 
@@ -22,8 +24,8 @@ function hasPermission (roles, route) {
  * @param routes asyncRoutes
  * @param roles
  */
-export function filterAsyncRoutes (routes, roles) {
-  const res = []
+export function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
+  const res: RouteRecordRaw[] = []
   routes.forEach((route) => {
     const tmp = { ...route }
     if (hasPermission(roles, tmp)) {
@@ -38,7 +40,7 @@ export function filterAsyncRoutes (routes, roles) {
 }
 
 export const usePermissionStore = defineStore('permission', {
-  state: () => ({
+  state: (): { asyncRoutes: RouteRecordRaw[] } => ({
     asyncRoutes: [] // 过滤后的异步路由
   }),
   getters: {
@@ -46,21 +48,21 @@ export const usePermissionStore = defineStore('permission', {
     routes: (s) => constantRoutes.concat(s.asyncRoutes)
   },
   actions: {
-    setRoutes (routes) {
+    setRoutes(routes: RouteRecordRaw[]) {
       this.asyncRoutes = routes
     },
     // 根据登录用户角色过滤动态路由表
-    generateRoutes (roles) {
+    generateRoutes(roles: string[]) {
       return new Promise((resolve) => {
         const accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
         resolve(accessedRoutes)
       })
     },
-    resetRouter () {
+    resetRouter() {
       const asyncRouterNameArr = this.asyncRoutes.map((mItem) => mItem.name)
       asyncRouterNameArr.forEach((name) => {
-        if (router.hasRoute(name)) {
-          router.removeRoute(name)
+        if (router.hasRoute(name as NonNullable<RouteRecordNameGeneric>)) {
+          router.removeRoute(name as NonNullable<RouteRecordNameGeneric>)
         }
       })
     }

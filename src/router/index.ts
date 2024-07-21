@@ -1,11 +1,17 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, RouteMeta, RouteRecordRaw as RouteRecordRawCore } from 'vue-router'
 import Layout from '@/layout'
 
+export type RouteRecordRaw = RouteRecordRawCore & {
+  meta?: RouteMeta & {
+    title?: string
+    tIcon?: string
+    roles?: string[]
+  },
+  hidden?: boolean
+}
+
 // 静态路由，不需要权限判断一定会起作用的路由
-/**
- * @type {import("vue-router/dist/vue-router").RouteRecordNormalized}
- */
-export const constantRoutes = [
+export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/',
     component: Layout,
@@ -40,11 +46,8 @@ export const constantRoutes = [
   }
 ]
 
-// 动态路由，需要过滤权限后才能起作用的路由
-/**
- * @type {import("vue-router/dist/vue-router").RouteRecordNormalized}
- */
-export const asyncRoutes = [
+// 异步路由，需要过滤权限后才能起作用的路由
+export const asyncRoutes: RouteRecordRaw[] = [
   {
     path: '/enterprise-dashboard',
     component: Layout,
@@ -56,6 +59,22 @@ export const asyncRoutes = [
         name: 'EnterpriseDashboard',
         meta: {
           title: '首页',
+          tIcon: 'home'
+        }
+      }
+    ]
+  },
+  {
+    path: '/enterprise-list',
+    component: Layout,
+    meta: {},
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/dashboard'),
+        name: 'EnterpriseList',
+        meta: {
+          title: '列表页',
           tIcon: 'home'
         }
       }

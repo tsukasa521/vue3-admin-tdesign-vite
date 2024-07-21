@@ -32,10 +32,9 @@
   </template>
 </template>
 
-<script setup>
+<script setup lang="ts">
 /* 初始化参数比如引入组件，proxy,state等 */
 import { ref } from 'vue'
-import Link from './Link.vue'
 import { isExternalUrl } from '@/utils/validate'
 
 const props = defineProps({
