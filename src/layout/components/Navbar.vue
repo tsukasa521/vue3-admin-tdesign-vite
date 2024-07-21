@@ -69,7 +69,7 @@ const changeTheme = (val) => {
 
 // 初始化侧边栏菜单收缩状态
 appStore.sidebar.opened = localStorage.getItem('sidebar')
-  ? JSON.parse(localStorage.getItem('sidebar'))
+  ? JSON.parse(localStorage.getItem('sidebar') || '')
   : appStore.isSidebarOpened
 const opened = computed(() => {
   return appStore.isSidebarOpened

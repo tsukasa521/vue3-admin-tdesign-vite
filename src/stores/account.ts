@@ -3,7 +3,19 @@ import { removeToken, setToken } from '@/utils/auth'
 import { usePermissionStore } from './permission'
 
 export const useAccountStore = defineStore('account', {
-  state: () => ({
+  state: (): {
+    profile: {
+      id?: string,
+      name?: string,
+      avatar?: string | null,
+      menu?: string[]
+    } | null,
+    roles: string[],
+    companyInfo: {
+      companyId: string,
+      companyName: string
+    }
+  } => ({
     profile: null,
     roles: [],
     companyInfo: {
@@ -18,11 +30,11 @@ export const useAccountStore = defineStore('account', {
     companyName: (s) => s.companyInfo.companyName
   },
   actions: {
-    login(name, password) {
+    login(name: string, password: string) {
       return new Promise((resolve, reject) => {
         // 模拟后端登录成功,返回令牌
         setToken("xxx")
-        resolve()
+        resolve(true)
       })
     },
     getProfile() {
@@ -37,7 +49,7 @@ export const useAccountStore = defineStore('account', {
           menu: [] // 可以从后端获取菜单
         }
 
-        resolve()
+        resolve(true)
       })
     },
     logout() {
@@ -47,7 +59,7 @@ export const useAccountStore = defineStore('account', {
         const store = usePermissionStore()
         store.resetRouter()
         removeToken()
-        resolve(null)
+        resolve(true)
       })
     }
   }
