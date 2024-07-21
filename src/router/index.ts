@@ -16,6 +16,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     path: '/',
     component: Layout,
     redirect: '/enterprise',
+    children: [],
     hidden: true
   },
   {
@@ -25,6 +26,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     meta: {
       title: '管理系统'
     },
+    children: [],
     hidden: true
   },
   {
@@ -34,6 +36,7 @@ export const constantRoutes: RouteRecordRaw[] = [
     meta: {
       title: '后台管理'
     },
+    children: [],
     hidden: true
   },
   {

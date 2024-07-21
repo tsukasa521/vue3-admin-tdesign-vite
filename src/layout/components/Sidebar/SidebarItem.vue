@@ -2,18 +2,18 @@
   <template v-if="!item.hidden">
     <template v-if="showSidebarItem(item.children, item)">
       <!-- <Link v-if="onlyOneChild.meta" :to="resolvePath(onlyOneChild.path)"> -->
-      <t-menu-item :value="resolvePath(onlyOneChild.path)" :to="resolvePath(onlyOneChild.path)"
+      <t-menu-item :value="resolvePath(onlyOneChild?.path)" :to="resolvePath(onlyOneChild?.path)"
         :class="{ 'submenu-title-noDropdown': !isNest }">
         <!-- <item :meta="onlyOneChild.meta || item.meta" /> -->
         <template #icon>
           <template v-if="item.meta?.tIcon">
             <t-icon :name="item.meta?.tIcon" />
           </template>
-          <template v-else-if="onlyOneChild.meta?.tIcon || item.meta?.tIcon">
-            <t-icon :name="onlyOneChild.meta?.tIcon" />
+          <template v-else-if="onlyOneChild?.meta?.tIcon || item.meta?.tIcon">
+            <t-icon :name="onlyOneChild?.meta?.tIcon" />
           </template>
         </template>
-        {{ onlyOneChild.meta?.title }}
+        {{ onlyOneChild?.meta?.title }}
       </t-menu-item>
       <!-- </Link> -->
     </template>
@@ -22,8 +22,8 @@
         <template v-if="item.meta?.tIcon">
           <t-icon :name="item.meta?.tIcon" />
         </template>
-        <template v-else-if="onlyOneChild.meta?.tIcon || item.meta?.tIcon">
-          <t-icon :name="onlyOneChild.meta?.tIcon" />
+        <template v-else-if="onlyOneChild?.meta?.tIcon || item.meta?.tIcon">
+          <t-icon :name="onlyOneChild?.meta?.tIcon" />
         </template>
       </template>
       <SidebarItem v-for="child in item.children" :key="child.path" :is-nest="true" :item="child"
@@ -36,28 +36,18 @@
 /* 初始化参数比如引入组件，proxy,state等 */
 import { ref } from 'vue'
 import { isExternalUrl } from '@/utils/validate'
+import { RouteRecordRaw } from '@/router';
 
-const props = defineProps({
-  // 每一个router Item
-  item: {
-    type: Object,
-    required: true
-  },
-  // 用于判断是不是子Item,设置响应的样式
-  isNest: {
-    type: Boolean,
-    default: false
-  },
-  // 基础路径，用于拼接
-  basePath: {
-    type: String,
-    default: ''
-  }
-})
+const props = withDefaults(defineProps<{
+  item: RouteRecordRaw,
+  isNest?: boolean,
+  basePath?: string
+}>(), { isNest: false, basePath: '' })
 
 // 显示sidebarItem 的情况
-const onlyOneChild = ref(null)
-const showSidebarItem = (children = [], parent) => {
+const onlyOneChild = ref<RouteRecordRaw>()
+
+const showSidebarItem = (children: RouteRecordRaw[] = [], parent: any) => {
   const showingChildren = children.filter((item) => {
     if (item.hidden) {
       return false
@@ -77,8 +67,8 @@ const showSidebarItem = (children = [], parent) => {
   return false
 }
 
-const resolvePath = (routePath) => {
-  if (isExternalUrl(routePath)) {
+const resolvePath = (routePath: string | undefined) => {
+  if (isExternalUrl(routePath || '')) {
     return routePath
   }
   if (isExternalUrl(props.basePath)) {

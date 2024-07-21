@@ -39,16 +39,20 @@ import { useAppStore } from '@/stores/app'
 import { usePermissionStore } from '@/stores/permission'
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { RouteRecordRaw } from '@/router'
+
 // 导入配置文件
 const appStore = useAppStore()
 
 const route = useRoute()
 const permissionStore = usePermissionStore()
 
+// 计算现在应该渲染的菜单
 const routes = computed(() => {
   const { meta, path } = route
   const routes = permissionStore.routes
 
+  // 默认模块名逻辑:路由由横杠分割,横杠左边的单词作为模块名
   const pathList = path.split('/')
   const firstLevelPathList = pathList[1].split('-')
   const whiteList = ['enterprise', 'admin']
@@ -60,16 +64,17 @@ const routes = computed(() => {
 
 /**
  *
- * @param {Array} routes
- * @param {*} module
+ * @param routes
+ * @param module 模块名
  */
-const hasRouteInModule = (routes, module) => {
+const hasRouteInModule = (routes: RouteRecordRaw[], module: string) => {
+  const out: RouteRecordRaw[] = []
   return routes.reduce((pre, cur) => {
     if (cur?.path.includes(module)) {
       pre.push(cur)
     }
     return pre
-  }, [])
+  }, out)
 }
 
 const isCollapse = computed(() => {
@@ -82,5 +87,4 @@ const activeMenu = computed(() => {
 })
 </script>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
