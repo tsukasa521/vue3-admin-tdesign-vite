@@ -13,6 +13,7 @@ import './styles/theme/index.scss'
 import TDesign from 'tdesign-vue-next'
 
 import './hooks/router'
+import './icons'
 
 // console.debug('NODE_ENV', process.env.NODE_ENV)
 
@@ -20,7 +21,8 @@ const app = createApp(App)
 
 const pinia = createPinia()
 
-app.use(pinia)
+app
+  .use(pinia)
   .use(router)
   .use(TDesign)
   .mount('#app')
