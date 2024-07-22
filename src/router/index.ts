@@ -119,8 +119,10 @@ export const asyncRoutes: RouteRecordRaw[] = [
   },
 ]
 
+const baseUrl = import.meta.env.BASE_URL
+console.log(baseUrl)
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(baseUrl),
   routes: constantRoutes
 })
 
