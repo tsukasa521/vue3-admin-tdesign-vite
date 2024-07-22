@@ -84,6 +84,22 @@ export const asyncRoutes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: '/enterprise-icon',
+    component: Layout,
+    meta: {},
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/icon-view'),
+        name: 'EnterpriseIcon',
+        meta: {
+          title: '图标页',
+          tIcon: 'home'
+        }
+      }
+    ]
+  },
+  {
     path: '/admin-dashboard',
     component: Layout,
     meta: {
