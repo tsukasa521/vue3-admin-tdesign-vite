@@ -68,16 +68,16 @@ export const asyncRoutes: RouteRecordRaw[] = [
     ]
   },
   {
-    path: '/enterprise-list',
+    path: '/enterprise-table',
     component: Layout,
     meta: {},
     children: [
       {
         path: 'index',
-        component: () => import('@/views/dashboard'),
-        name: 'EnterpriseList',
+        component: () => import('@/views/table/Table.vue'),
+        name: 'EnterpriseTable',
         meta: {
-          title: '列表页',
+          title: '表格页',
           tIcon: 'home'
         }
       }
