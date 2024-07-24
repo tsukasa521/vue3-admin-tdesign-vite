@@ -13,6 +13,8 @@
     "lint": "oxlint src"
   },
   "dependencies": {
+    "@2kk/admin-vueuse": "~0.2.0",
+    "@2kk/admin-vueuse-tdesign": "~0.2.0",
     "axios": "^0.27.2",
     "core-js": "^3.8.3",
     "dayjs": "^1.11.10",
