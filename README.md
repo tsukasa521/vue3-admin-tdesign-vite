@@ -8,15 +8,17 @@
 - echarts
 - tailwindcss
 - vite
-- ts
+- typescript
+- oxlint
 
 **关于技术栈的选择**
 
 # 最佳实践
-- 通用列表页
+- 通用表格页
 - 通用增删改查
 - 通用打开Dialog、Drawer
-- iconfont页
+- 图标页
+- 图表页
 - 通用向导页
 - 主题切换
 - 多语言
