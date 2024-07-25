@@ -1,14 +1,22 @@
 <template>
   <div class="page-container">
     <div class="page-inner">
-      <t-form :data="searchQuery" layout="inline" label-width="0" @submit="search">
-        <t-form-item>
-          <t-input v-model="searchQuery.name" placeholder="请输入姓名"></t-input>
-        </t-form-item>
-        <t-form-item>
-          <t-button theme="primary" type="submit">搜索</t-button>
-        </t-form-item>
-      </t-form>
+      <div class="flex justify-between">
+        <t-form :data="searchQuery" layout="inline" label-width="0" @submit="search">
+          <t-form-item>
+            <t-input v-model="searchQuery.name" placeholder="请输入姓名"></t-input>
+          </t-form-item>
+          <t-form-item>
+            <t-button theme="primary" type="submit">搜索</t-button>
+          </t-form-item>
+        </t-form>
+        <div>
+          <t-space>
+            <t-button class="w-32" theme="primary" @click="getList">批量</t-button>
+            <t-button class="w-32" theme="primary" @click="getList">新增</t-button>
+          </t-space>
+        </div>
+      </div>
       <t-table rowKey="id" :data="list" :columns="columns" size="small" :loading="listLoading" :pagination="pagination"
         @page-change="handlePageChange"></t-table>
     </div>
