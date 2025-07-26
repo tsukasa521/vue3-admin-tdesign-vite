@@ -6,7 +6,7 @@ import svgLoader from 'vite-svg-loader'
 const srcPath = path.resolve(__dirname, 'src')
 
 export default defineConfig({
-  base: '/vue3-admin-tdesign-vite',
+  base: '/',
   server: {
     port: 8080
   },

@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory, RouteMeta, RouteRecordRaw as RouteRecordRawCore } from 'vue-router'
-import Layout from '@/layout'
 
 export type RouteRecordRaw = RouteRecordRawCore & {
   meta?: RouteMeta & {
@@ -14,28 +13,7 @@ export type RouteRecordRaw = RouteRecordRawCore & {
 export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/',
-    component: Layout,
-    redirect: '/enterprise',
-    children: [],
-    hidden: true
-  },
-  {
-    path: '/enterprise',
-    component: Layout,
-    redirect: '/enterprise-dashboard/index',
-    meta: {
-      title: '管理系统'
-    },
-    children: [],
-    hidden: true
-  },
-  {
-    path: '/admin',
-    component: Layout,
-    redirect: '/admin-dashboard/index',
-    meta: {
-      title: '后台管理'
-    },
+    redirect: '/login',
     children: [],
     hidden: true
   },
@@ -50,77 +28,9 @@ export const constantRoutes: RouteRecordRaw[] = [
 ]
 
 // 异步路由，需要过滤权限后才能起作用的路由
-export const asyncRoutes: RouteRecordRaw[] = [
-  {
-    path: '/enterprise-dashboard',
-    component: Layout,
-    meta: {},
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/dashboard'),
-        name: 'EnterpriseDashboard',
-        meta: {
-          title: '首页',
-          tIcon: 'home'
-        }
-      }
-    ]
-  },
-  {
-    path: '/enterprise-list',
-    component: Layout,
-    meta: {},
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/dashboard'),
-        name: 'EnterpriseList',
-        meta: {
-          title: '列表页',
-          tIcon: 'home'
-        }
-      }
-    ]
-  },
-  {
-    path: '/enterprise-icon',
-    component: Layout,
-    meta: {},
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/icon-view'),
-        name: 'EnterpriseIcon',
-        meta: {
-          title: '图标页',
-          tIcon: 'home'
-        }
-      }
-    ]
-  },
-  {
-    path: '/admin-dashboard',
-    component: Layout,
-    meta: {
-      roles: ['admin']
-    },
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/admin/dashboard'),
-        name: 'AdminDashboard',
-        meta: {
-          title: '管理首页',
-          tIcon: 'home'
-        }
-      }
-    ]
-  },
-]
+export const asyncRoutes: RouteRecordRaw[] = []
 
 const baseUrl = import.meta.env.BASE_URL
-console.log(baseUrl)
 const router = createRouter({
   history: createWebHistory(baseUrl),
   routes: constantRoutes

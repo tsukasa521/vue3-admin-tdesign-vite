@@ -1,25 +1,6 @@
 <template>
   <div class="h-screen flex justify-center items-center bg">
-    <div class="authentication-container">
-      <div class="card">
-        <div class="text-xl font-medium text-center mt-2 mb-6">
-          管理系统
-        </div>
-        <t-form ref="refForm" :data="formValue" :rules="formRules" labelAlign="top" @submit="login">
-          <t-form-item label="账户名" name="name">
-            <t-input v-model="formValue.name" size="large" clearable placeholder="请输入手机号或邮箱"></t-input>
-          </t-form-item>
-          <t-form-item label="密码" name="password">
-            <t-input v-model="formValue.password" type="password" size="large" clearable placeholder="请输入密码"></t-input>
-          </t-form-item>
-          <t-form-item>
-            <div class="mt-4 w-full">
-              <t-button :loading="buttonLoading" theme="primary" size="large" type="submit" block>登录</t-button>
-            </div>
-          </t-form-item>
-        </t-form>
-      </div>
-    </div>
+    登录页
   </div>
 </template>
 
