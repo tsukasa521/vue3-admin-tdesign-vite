@@ -13,7 +13,7 @@ export type RouteRecordRaw = RouteRecordRawCore & {
 export const constantRoutes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: '/login',
+    redirect: '/home',
     children: [],
     hidden: true
   },
@@ -23,6 +23,11 @@ export const constantRoutes: RouteRecordRaw[] = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '@/views/login'),
+    hidden: true
+  },
+  {
+    path: '/home',
+    component: () => import('@/views/home'),
     hidden: true
   }
 ]

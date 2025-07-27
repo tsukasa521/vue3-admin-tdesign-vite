@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { MessagePlugin } from 'tdesign-vue-next'
 import { useAccountStore } from '@/stores/account'
 import { getToken } from '@/utils/auth'
 
@@ -75,10 +74,7 @@ service.interceptors.response.use(
 )
 
 function showMessage (message) {
-  MessagePlugin.error(
-    message,
-    1000 * 5
-  )
+  alert(message)
 }
 
 export default service

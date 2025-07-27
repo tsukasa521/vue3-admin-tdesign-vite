@@ -6,7 +6,7 @@ import { getToken } from '@/utils/auth'
 const rootRoute = '/'
 const loginRoute = '/login'
 // 白名单路由，这些路由不需要令牌可以直接访问
-const routeWhiteList = ['/login', '/404', '/401', '/test']
+const routeWhiteList = ['/login', '/home', '/404', '/401', '/test']
 
 router.beforeEach(async (to, from, next) => {
   const accountStore = useAccountStore()
@@ -51,4 +51,4 @@ router.beforeEach(async (to, from, next) => {
   }
 })
 
-router.afterEach(() => {})
+router.afterEach(() => { })
