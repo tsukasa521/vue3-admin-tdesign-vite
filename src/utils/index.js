@@ -1,6 +1,6 @@
-import dayjs from 'dayjs'
+import dayjs from "dayjs"
 
-export function cloneDeep (item) {
+export function cloneDeep(item) {
   if (!item) {
     return item
   } // null, undefined values check
@@ -15,15 +15,15 @@ export function cloneDeep (item) {
     }
   })
 
-  if (typeof result === 'undefined') {
-    if (Object.prototype.toString.call(item) === '[object Array]') {
+  if (typeof result === "undefined") {
+    if (Object.prototype.toString.call(item) === "[object Array]") {
       result = []
       item.forEach(function (child, index) {
         result[index] = cloneDeep(child)
       })
-    } else if (typeof item === 'object') {
+    } else if (typeof item === "object") {
       // testing that this is DOM
-      if (item.nodeType && typeof item.cloneNode === 'function') {
+      if (item.nodeType && typeof item.cloneNode === "function") {
         result = item.cloneNode(true)
       } else if (!item.prototype) {
         // check that this is a literal
@@ -54,10 +54,8 @@ export function cloneDeep (item) {
   return result
 }
 
-export function toThousands (num) {
-  return (+num || 0)
-    .toString()
-    .replace(/^-?\d+/g, (m) => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
+export function toThousands(num) {
+  return (+num || 0).toString().replace(/^-?\d+/g, (m) => m.replace(/(?=(?!\b)(\d{3})+$)/g, ","))
 }
 
 /**
@@ -65,14 +63,14 @@ export function toThousands (num) {
  * @param {Function} func
  * @returns
  */
-export function isFunction (func) {
-  return func && typeof func === 'function'
+export function isFunction(func) {
+  return func && typeof func === "function"
 }
 
-export function debounce (func, wait, immediate) {
+export function debounce(func, wait, immediate) {
   let timeout, args, context, timestamp, result
 
-  const later = function later () {
+  const later = function later() {
     // 据上一次触发时间间隔
     const last = +new Date() - timestamp
 
@@ -89,7 +87,7 @@ export function debounce (func, wait, immediate) {
     }
   }
 
-  return function fn (...args) {
+  return function fn(...args) {
     context = this
     timestamp = +new Date()
     const callNow = immediate && !timeout
@@ -108,6 +106,6 @@ export function debounce (func, wait, immediate) {
  * 根据时间戳生成文件名
  * @returns
  */
-export function generateRandomName () {
-  return dayjs().format('YYYYMMDDhhmmss')
+export function generateRandomName() {
+  return dayjs().format("YYYYMMDDhhmmss")
 }

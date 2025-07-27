@@ -1,7 +1,6 @@
-import { defineStore } from 'pinia'
-import router, { asyncRoutes, constantRoutes, RouteRecordRaw } from '@/router'
-import { RouteRecordNameGeneric } from 'vue-router'
-
+import { defineStore } from "pinia"
+import router, { asyncRoutes, constantRoutes, RouteRecordRaw } from "@/router"
+import { RouteRecordNameGeneric } from "vue-router"
 
 /**
  * Use meta.role to determine if the current user has permission
@@ -10,7 +9,7 @@ import { RouteRecordNameGeneric } from 'vue-router'
  */
 function hasPermission(roles: string[], route: RouteRecordRaw) {
   // 管理员可以看到所有菜单
-  if (roles.includes('admin')) return true
+  if (roles.includes("admin")) return true
 
   if (route.meta && route.meta.roles) {
     return roles.some((role) => route.meta?.roles?.includes(role))
@@ -39,13 +38,13 @@ export function filterAsyncRoutes(routes: RouteRecordRaw[], roles: string[]) {
   return res
 }
 
-export const usePermissionStore = defineStore('permission', {
+export const usePermissionStore = defineStore("permission", {
   state: (): { asyncRoutes: RouteRecordRaw[] } => ({
-    asyncRoutes: [] // 过滤后的异步路由
+    asyncRoutes: [], // 过滤后的异步路由
   }),
   getters: {
     // 将过滤后的异步路由和静态路由集合
-    routes: (s) => constantRoutes.concat(s.asyncRoutes)
+    routes: (s) => constantRoutes.concat(s.asyncRoutes),
   },
   actions: {
     setRoutes(routes: RouteRecordRaw[]) {
@@ -65,6 +64,6 @@ export const usePermissionStore = defineStore('permission', {
           router.removeRoute(name as NonNullable<RouteRecordNameGeneric>)
         }
       })
-    }
-  }
+    },
+  },
 })

@@ -1,4 +1,4 @@
 export const DEVICE_TYPE = {
-  desktop: 'desktop',
-  mobile: 'mobile'
+  desktop: "desktop",
+  mobile: "mobile",
 }

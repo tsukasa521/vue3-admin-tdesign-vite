@@ -1,3 +1,3 @@
-import component from './Login.vue'
+import component from "./Login.vue"
 
 export default component

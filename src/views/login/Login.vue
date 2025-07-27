@@ -1,23 +1,21 @@
 <template>
-  <div class="h-screen flex justify-center items-center bg">
-    登录页
-  </div>
+  <div class="h-screen flex justify-center items-center bg">登录页</div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import router from '@/router'
-import { useAccountStore } from '@/stores'
+import { ref } from "vue"
+import router from "@/router"
+import { useAccountStore } from "@/stores"
 
 const buttonLoading = ref(false)
 const refForm = ref()
 const formValue = ref({
-  name: 'admin',
-  password: 'password'
+  name: "admin",
+  password: "password",
 })
 const formRules = ref({
   name: [{ required: true }],
-  password: [{ required: true }]
+  password: [{ required: true }],
 })
 
 const store = useAccountStore()
@@ -29,7 +27,7 @@ const login = async () => {
     await store.login(formValue.value.name, formValue.value.password)
     // const { showSuccessMessage } = useNotification()
     // showSuccessMessage('登录成功！')
-    router.push({ path: '/' })
+    router.push({ path: "/" })
   } finally {
     buttonLoading.value = false
   }
@@ -67,7 +65,7 @@ const login = async () => {
 
   .card {
     @apply p-8 bg-white rounded-md;
-    box-shadow: 0 0.25rem 1.125rem rgba(75, 70, 92, .1);
+    box-shadow: 0 0.25rem 1.125rem rgba(75, 70, 92, 0.1);
   }
 }
 </style>

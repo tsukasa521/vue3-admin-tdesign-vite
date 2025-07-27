@@ -1,5 +1,6 @@
 // 覆盖 tdesign 主题
-:root,:root[theme-mode="light"] {
+:root,
+:root[theme-mode="light"] {
   --brand-main: var(--td-brand-color-6);
   --td-brand-color-light: var(--td-brand-color-1);
   --td-brand-color-focus: var(--td-brand-color-2);

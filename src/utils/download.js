@@ -2,43 +2,46 @@
 export function download(data, strFileName, strMimeType) {
   // eslint-disable-next-line one-var
   let self = window, // this script is only for browsers anyway...
-    defaultMime = 'application/octet-stream', // this default mime also triggers iframe downloads
+    defaultMime = "application/octet-stream", // this default mime also triggers iframe downloads
     mimeType = strMimeType || defaultMime,
     payload = data,
     url = !strFileName && !strMimeType && payload,
-    anchor = document.createElement('a'),
-    toString = function(a) {
+    anchor = document.createElement("a"),
+    toString = function (a) {
       return String(a)
     },
-    myBlob = (self.Blob || self.MozBlob || self.WebKitBlob || toString),
-    fileName = strFileName || 'download',
+    myBlob = self.Blob || self.MozBlob || self.WebKitBlob || toString,
+    fileName = strFileName || "download",
     blob,
     reader
   myBlob = myBlob.call ? myBlob.bind(self) : Blob
 
-  if (String(this) === 'true') { // reverse arguments, allowing download.bind(true, "text/xml", "export.xml") to act as a callback
+  if (String(this) === "true") {
+    // reverse arguments, allowing download.bind(true, "text/xml", "export.xml") to act as a callback
     payload = [payload, mimeType]
     mimeType = payload[0]
     payload = payload[1]
   }
   // debugger
-  if (url && url.length < 2048) { // if no filename and no mime, assume a url was passed as the only argument
+  if (url && url.length < 2048) {
+    // if no filename and no mime, assume a url was passed as the only argument
     // 获得文件后缀
     // debugger
     // const urlFileName = url.split('/').pop().split('?')[0] // 文件名加后缀
     // const suffix = urlFileName.substring(url.lastIndexOf('.'))// 文件名加后缀
     //
-    fileName = url.split('/').pop().split('?')[0]
+    fileName = url.split("/").pop().split("?")[0]
     // fileName = strFileName + suffix// 文件名加后缀
     anchor.href = url // assign href prop to temp anchor
-    if (anchor.href.indexOf(url) !== -1) { // if the browser determines that it's a potentially valid url path:
+    if (anchor.href.indexOf(url) !== -1) {
+      // if the browser determines that it's a potentially valid url path:
       let ajax = new XMLHttpRequest()
-      ajax.open('GET', url, true)
-      ajax.responseType = 'blob'
-      ajax.onload = function(e) {
+      ajax.open("GET", url, true)
+      ajax.responseType = "blob"
+      ajax.onload = function (e) {
         download(e.target.response, fileName, defaultMime)
       }
-      setTimeout(function() {
+      setTimeout(function () {
         ajax.send()
       }, 0) // allows setting custom ajax headers using the return:
       return ajax
@@ -47,7 +50,7 @@ export function download(data, strFileName, strMimeType) {
 
   // go ahead and download dataURLs right away
   if (/^data:([\w+-]+\/[\w+.-]+)?[,;]/.test(payload)) {
-    if (payload.length > (1024 * 1024 * 1.999) && myBlob !== toString) {
+    if (payload.length > 1024 * 1024 * 1.999 && myBlob !== toString) {
       payload = dataUrlToBlob(payload)
       mimeType = payload.type || defaultMime
     } else {
@@ -55,7 +58,8 @@ export function download(data, strFileName, strMimeType) {
         ? navigator.msSaveBlob(dataUrlToBlob(payload), fileName)
         : saver(payload) // everyone else can save dataURLs un-processed
     }
-  } else { // not data url, is it a string with special needs?
+  } else {
+    // not data url, is it a string with special needs?
     if (/([\x80-\xff])/.test(payload)) {
       // eslint-disable-next-line one-var
       let i = 0,
@@ -63,22 +67,23 @@ export function download(data, strFileName, strMimeType) {
         mx = tempUiArr.length
       for (i; i < mx; ++i) tempUiArr[i] = payload.charCodeAt(i)
       payload = new myBlob([tempUiArr], {
-        type: mimeType
+        type: mimeType,
       })
     }
   }
-  blob = payload instanceof myBlob
-    ? payload
-    : new myBlob([payload], {
-      type: mimeType
-    })
+  blob =
+    payload instanceof myBlob
+      ? payload
+      : new myBlob([payload], {
+          type: mimeType,
+        })
 
   function dataUrlToBlob(strUrl) {
     // eslint-disable-next-line one-var
     let parts = strUrl.split(/[:;,]/),
       type = parts[1],
-      indexDecoder = strUrl.indexOf('charset') > 0 ? 3 : 2,
-      decoder = parts[indexDecoder] == 'base64' ? atob : decodeURIComponent,
+      indexDecoder = strUrl.indexOf("charset") > 0 ? 3 : 2,
+      decoder = parts[indexDecoder] == "base64" ? atob : decodeURIComponent,
       binData = decoder(parts.pop()),
       mx = binData.length,
       i = 0,
@@ -87,28 +92,29 @@ export function download(data, strFileName, strMimeType) {
     for (i; i < mx; ++i) uiArr[i] = binData.charCodeAt(i)
 
     return new myBlob([uiArr], {
-      type: type
+      type: type,
     })
   }
   function doSth(e) {
     e.stopPropagation()
-    this.removeEventListener('click', doSth)
+    this.removeEventListener("click", doSth)
   }
   function saver(url, winMode) {
-    if ('download' in anchor) { // html5 A[download]
+    if ("download" in anchor) {
+      // html5 A[download]
       anchor.href = url
-      anchor.setAttribute('download', fileName)
-      anchor.className = 'download-js-link'
-      anchor.innerHTML = 'downloading...'
-      anchor.style.display = 'none'
+      anchor.setAttribute("download", fileName)
+      anchor.className = "download-js-link"
+      anchor.innerHTML = "downloading..."
+      anchor.style.display = "none"
 
-      anchor.addEventListener('click', doSth)
+      anchor.addEventListener("click", doSth)
       document.body.appendChild(anchor)
-      setTimeout(function() {
+      setTimeout(function () {
         anchor.click()
         document.body.removeChild(anchor)
         if (winMode === true) {
-          setTimeout(function() {
+          setTimeout(function () {
             self.URL.revokeObjectURL(anchor.href)
           }, 250)
         }
@@ -119,9 +125,10 @@ export function download(data, strFileName, strMimeType) {
     // handle non-a[download] safari as best we can:
     if (/(Version)\/(\d+)\.(\d+)(?:\.(\d+))?.*Safari\//.test(navigator.userAgent)) {
       // eslint-disable-next-line no-useless-escape
-      if (/^data:/.test(url)) url = 'data:' + url.replace(/^data:([\w\/\-\+]+)/, defaultMime)
-      if (!window.open(url)) { // popup blocked, offer direct download:
-        if (confirm('Displaying New Document\n\nUse Save As... to download, then click back to return to this page.')) {
+      if (/^data:/.test(url)) url = "data:" + url.replace(/^data:([\w\/\-\+]+)/, defaultMime)
+      if (!window.open(url)) {
+        // popup blocked, offer direct download:
+        if (confirm("Displaying New Document\n\nUse Save As... to download, then click back to return to this page.")) {
           location.href = url
         }
       }
@@ -129,38 +136,41 @@ export function download(data, strFileName, strMimeType) {
     }
 
     // do iframe dataURL download (old ch+FF):
-    let f = document.createElement('iframe')
+    let f = document.createElement("iframe")
     document.body.appendChild(f)
 
-    if (!winMode && /^data:/.test(url)) { // force a mime that will download:
+    if (!winMode && /^data:/.test(url)) {
+      // force a mime that will download:
       // eslint-disable-next-line no-useless-escape
-      url = 'data:' + url.replace(/^data:([\w\/\-\+]+)/, defaultMime)
+      url = "data:" + url.replace(/^data:([\w\/\-\+]+)/, defaultMime)
     }
     f.src = url
-    setTimeout(function() {
+    setTimeout(function () {
       document.body.removeChild(f)
     }, 333)
   } // end saver
 
-  if (navigator.msSaveBlob) { // IE10+ : (has Blob, but not a[download] or URL)
+  if (navigator.msSaveBlob) {
+    // IE10+ : (has Blob, but not a[download] or URL)
     return navigator.msSaveBlob(blob, fileName)
   }
 
-  if (self.URL) { // simple fast and modern way using Blob and URL:
+  if (self.URL) {
+    // simple fast and modern way using Blob and URL:
     saver(self.URL.createObjectURL(blob), true)
   } else {
     // handle non-Blob()+non-URL browsers:
-    if (typeof blob === 'string' || blob.constructor === toString) {
+    if (typeof blob === "string" || blob.constructor === toString) {
       try {
-        return saver('data:' + mimeType + ';base64,' + self.btoa(blob))
+        return saver("data:" + mimeType + ";base64," + self.btoa(blob))
       } catch (y) {
-        return saver('data:' + mimeType + ',' + encodeURIComponent(blob))
+        return saver("data:" + mimeType + "," + encodeURIComponent(blob))
       }
     }
 
     // Blob but not URL support:
     reader = new FileReader()
-    reader.onload = function() {
+    reader.onload = function () {
       saver(this.result)
     }
     reader.readAsDataURL(blob)

@@ -1,12 +1,12 @@
-import router from '@/router'
-import { useAccountStore } from '@/stores/account'
-import { usePermissionStore } from '@/stores/permission'
-import { getToken } from '@/utils/auth'
+import router from "@/router"
+import { useAccountStore } from "@/stores/account"
+import { usePermissionStore } from "@/stores/permission"
+import { getToken } from "@/utils/auth"
 
-const rootRoute = '/'
-const loginRoute = '/login'
+const rootRoute = "/"
+const loginRoute = "/login"
 // 白名单路由，这些路由不需要令牌可以直接访问
-const routeWhiteList = ['/login', '/home', '/404', '/401', '/test']
+const routeWhiteList = ["/login", "/home", "/404", "/401", "/test"]
 
 router.beforeEach(async (to, from, next) => {
   const accountStore = useAccountStore()
@@ -23,7 +23,7 @@ router.beforeEach(async (to, from, next) => {
       // 如果已获取公共信息，直接跳转不需要再次获取
       if (accountStore.hasProfile) {
         if (from.query.redirect && from.query.redirect !== to.path) {
-          console.debug('from', from.query.redirect)
+          console.debug("from", from.query.redirect)
           next({ path: from.query.redirect, replace: true })
           return
         }
@@ -37,7 +37,7 @@ router.beforeEach(async (to, from, next) => {
           router.addRoute(route)
         })
         if (from.query.redirect && from.query.redirect !== to.path) {
-          console.debug('from', from.query.redirect)
+          console.debug("from", from.query.redirect)
           next({ path: from.query.redirect, replace: true })
           return
         }
@@ -45,10 +45,10 @@ router.beforeEach(async (to, from, next) => {
       }
     } else {
       // 如果是根路由那就不需要再跳转了
-      const suffix = to.path === rootRoute ? '' : `?redirect=${to.path}`
+      const suffix = to.path === rootRoute ? "" : `?redirect=${to.path}`
       next(`${loginRoute}${suffix}`)
     }
   }
 })
 
-router.afterEach(() => { })
+router.afterEach(() => {})

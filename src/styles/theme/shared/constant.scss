@@ -1,18 +1,26 @@
 // todo 核心变量的配置,后续默认主题样式和export scss都要靠这个配置文件来动态生成. 目前未启用.
-$root-vars:(
-  --color-primary: #277fff, // 品牌色 主色
+$root-vars: (
+  --color-primary: #277fff,
+  // 品牌色 主色
   --color-primary-light-3: #68a5ff,
   --color-primary-light-5: #93bfff,
   --color-primary-light-7: #bed9ff,
   --color-primary-light-8: #d4e5ff,
   --color-primary-light-9: #e9f2ff,
   --color-primary-dark-2: #1f66cc,
-  --color-success: #54bb87, // 成功提示色
-  --color-danger: #f56c6c, // 异常提示色
-  --color-text-primary: #303133, // 强调文字颜色
-  --color-text-regular: #2c3e50, // 主文字颜色
-  --color-text-secondary: #999999, // 次文字颜色
-  --color-board-base: #eeeeee, // 默认边框颜色
-  --color-bg-base:#f0f0f0, // 默认背景色
-  --color-bg-page:#ffffff, // 页面背景色
-)
+  --color-success: #54bb87,
+  // 成功提示色
+  --color-danger: #f56c6c,
+  // 异常提示色
+  --color-text-primary: #303133,
+  // 强调文字颜色
+  --color-text-regular: #2c3e50,
+  // 主文字颜色
+  --color-text-secondary: #999999,
+  // 次文字颜色
+  --color-board-base: #eeeeee,
+  // 默认边框颜色
+  --color-bg-base: #f0f0f0,
+  // 默认背景色
+  --color-bg-page: #ffffff, // 页面背景色
+);

@@ -1,50 +1,50 @@
 <template>
-    <div class="bb-screen flex_column" :style="{ width: w, height: h }">
-        <screen-title class="flex_none" :text="title" :width="textWidth" :font-size="textFontSize"></screen-title>
-        <div class="bb-screen__container flex_1">
-            <slot></slot>
-        </div>
+  <div class="bb-screen flex_column" :style="{ width: w, height: h }">
+    <screen-title class="flex_none" :text="title" :width="textWidth" :font-size="textFontSize"></screen-title>
+    <div class="bb-screen__container flex_1">
+      <slot></slot>
     </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
-import ScreenTitle from "./screen-title.vue";
+import { computed } from "vue"
+import ScreenTitle from "./screen-title.vue"
 
 interface Props {
-    width?: number;
-    height?: number;
-    textWidth?: number;
-    textFontSize?: number;
-    title: string;
+  width?: number
+  height?: number
+  textWidth?: number
+  textFontSize?: number
+  title: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    width: 1920,
-    height: 821,
-    textWidth: 612,
-    textFontSize: 30,
-    title: "",
-});
+  width: 1920,
+  height: 821,
+  textWidth: 612,
+  textFontSize: 30,
+  title: "",
+})
 
 const h = computed(() => {
-    return `${props.height}px`;
-});
+  return `${props.height}px`
+})
 
 const w = computed(() => {
-    return `${props.width}px`; 
-});
+  return `${props.width}px`
+})
 </script>
 
 <style scoped lang="scss">
 .bb-screen {
-    width: v-bind(w);
-    height: v-bind(h);
-    background: #012746;
-    box-sizing: border-box;
-    padding: 20px 22px;
+  width: v-bind(w);
+  height: v-bind(h);
+  background: #012746;
+  box-sizing: border-box;
+  padding: 20px 22px;
 }
 .bb-screen__container {
-    margin-top: 12px;
+  margin-top: 12px;
 }
 </style>

@@ -1,33 +1,33 @@
-import { defineStore } from 'pinia'
-import { removeToken, setToken } from '@/utils/auth'
-import { usePermissionStore } from './permission'
+import { defineStore } from "pinia"
+import { removeToken, setToken } from "@/utils/auth"
+import { usePermissionStore } from "./permission"
 
-export const useAccountStore = defineStore('account', {
+export const useAccountStore = defineStore("account", {
   state: (): {
     profile: {
-      id?: string,
-      name?: string,
-      avatar?: string | null,
+      id?: string
+      name?: string
+      avatar?: string | null
       menu?: string[]
-    } | null,
-    roles: string[],
+    } | null
+    roles: string[]
     companyInfo: {
-      companyId: string,
+      companyId: string
       companyName: string
     }
   } => ({
     profile: null,
     roles: [],
     companyInfo: {
-      companyId: '',
-      companyName: '某某有限公司'
-    }
+      companyId: "",
+      companyName: "某某有限公司",
+    },
   }),
   getters: {
     hasProfile: (s) => {
       return s.profile && s.roles && s.roles.length
     },
-    companyName: (s) => s.companyInfo.companyName
+    companyName: (s) => s.companyInfo.companyName,
   },
   actions: {
     login(name: string, password: string) {
@@ -40,13 +40,13 @@ export const useAccountStore = defineStore('account', {
     getProfile() {
       return new Promise((resolve, reject) => {
         // 模拟后端返回登录账号信息
-        this.roles = ['admin']
+        this.roles = ["admin"]
 
         this.profile = {
-          id: '001',
-          name: '张三',
+          id: "001",
+          name: "张三",
           avatar: null,
-          menu: [] // 可以从后端获取菜单
+          menu: [], // 可以从后端获取菜单
         }
 
         resolve(true)
@@ -61,6 +61,6 @@ export const useAccountStore = defineStore('account', {
         removeToken()
         resolve(true)
       })
-    }
-  }
+    },
+  },
 })
